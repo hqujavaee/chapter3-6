@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+		<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+		<aop:config>
+		  <aop:aspect ref="performanceManager">
+		    <aop:before method="silenceCellPhones"
+		                pointcut="execution(** cn.edu.hqu.cst.javaee.performance.Performance.perform(..))"/>
+		    <aop:before method="takeSeats"
+		    	pointcut="execution(** cn.edu.hqu.cst.javaee.performance.Performance.perform(..))" />
+		    <aop:after-returning method="orderlyRetreat"
+		    	pointcut="execution(** cn.edu.hqu.cst.javaee.performance.Performance.perform(..))" />
+		    <aop:after-throwing method="refound"
+		    	pointcut="execution(** cn.edu.hqu.cst.javaee.performance.Performance.perform(..))" />
+		  </aop:aspect>
+		</aop:config>
+
+</beans>
